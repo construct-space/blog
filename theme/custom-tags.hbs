@@ -1,0 +1,16 @@
+{{!< default}}
+
+<section class="feed-section">
+    <p class="section-label">Topics</p>
+    <div class="topic-grid" style="flex-direction:column;gap:0">
+        {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+            {{#foreach tags}}
+            <a href="{{url}}" class="post-row">
+                <span class="post-row-tag" style="width:auto">{{name}}</span>
+                <span class="post-row-title" style="color:var(--app-muted)">{{description}}</span>
+                <span class="post-row-reading">{{count.posts}} {{plural count.posts empty="posts" singular="post" plural="posts"}}</span>
+            </a>
+            {{/foreach}}
+        {{/get}}
+    </div>
+</section>

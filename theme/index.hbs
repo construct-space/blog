@@ -1,0 +1,54 @@
+{{!< default}}
+
+{{#if @home}}
+    {{#get "posts" filter="featured:true" limit="1" as |featured|}}
+        {{#foreach featured}}
+        <section class="hero">
+            <p class="section-label">Featured</p>
+            <h1 class="hero-title"><a href="{{url}}">{{title}}</a></h1>
+            <p class="hero-excerpt">{{excerpt words="40"}}</p>
+            <div class="hero-meta">
+                <span>{{primary_author.name}}</span>
+                <span class="meta-dot">&middot;</span>
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+                {{#if primary_tag}}
+                <span class="meta-dot">&middot;</span>
+                <a href="{{primary_tag.url}}" class="meta-tag">{{primary_tag.name}}</a>
+                {{/if}}
+            </div>
+        </section>
+        {{/foreach}}
+    {{/get}}
+{{/if}}
+
+<section class="feed-section">
+    <p class="section-label">Latest</p>
+    <div class="post-list">
+        {{#foreach posts}}
+        <a href="{{url}}" class="post-row">
+            <time class="post-row-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D"}}</time>
+            {{#if primary_tag}}
+            <span class="post-row-tag">{{primary_tag.name}}</span>
+            {{/if}}
+            <span class="post-row-title">{{title}}</span>
+            <span class="post-row-reading">{{reading_time}}</span>
+        </a>
+        {{/foreach}}
+    </div>
+</section>
+
+{{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+<section class="feed-section">
+    <p class="section-label">Topics</p>
+    <div class="topic-grid">
+        {{#foreach tags}}
+        <a href="{{url}}" class="topic-item">
+            <span class="topic-name">{{name}}</span>
+            <span class="topic-count">{{count.posts}}</span>
+        </a>
+        {{/foreach}}
+    </div>
+</section>
+{{/get}}
+
+{{pagination}}

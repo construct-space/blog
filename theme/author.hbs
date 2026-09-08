@@ -1,0 +1,33 @@
+{{!< default}}
+
+<section class="feed-section">
+    <p class="section-label">Author</p>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+        {{#if profile_image}}
+        <img src="{{profile_image}}" alt="{{name}}" style="width:48px;height:48px;border-radius:50%;object-fit:cover">
+        {{else}}
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--app-accent);display:flex;align-items:center;justify-content:center;color:var(--app-accent-foreground);font-weight:700;font-size:1.125rem">{{name.[0]}}</div>
+        {{/if}}
+        <div>
+            <h1 style="font-size:1.5rem;font-weight:700">{{name}}</h1>
+            {{#if bio}}
+            <p style="color:var(--app-muted);font-size:0.875rem;margin-top:0.125rem">{{bio}}</p>
+            {{/if}}
+        </div>
+    </div>
+
+    <div class="post-list">
+        {{#foreach posts}}
+        <a href="{{url}}" class="post-row">
+            <time class="post-row-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D"}}</time>
+            {{#if primary_tag}}
+            <span class="post-row-tag">{{primary_tag.name}}</span>
+            {{/if}}
+            <span class="post-row-title">{{title}}</span>
+            <span class="post-row-reading">{{reading_time}}</span>
+        </a>
+        {{/foreach}}
+    </div>
+</section>
+
+{{pagination}}

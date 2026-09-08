@@ -1,0 +1,15 @@
+name: blog
+server: bp.construct.ninja
+port: 2368
+build:
+    dockerfile: Dockerfile
+    context: .
+env:
+    url: "https://construct.blog"
+    database__client: "sqlite3"
+    database__connection__filename: "/var/lib/ghost/content/data/ghost.db"
+    NODE_ENV: "production"
+    OAUTH_URL: "https://accounts.lisaos.dev"
+    OAUTH_CLIENT_ID: "construct_blog"
+    OAUTH_CLIENT_SECRET: "csk_13934ead13901face17d8df27d58a45256b2235cad431b33ec154708abe3139e"
+    GHOST_ADMIN_KEY: "CHANGE_ME"

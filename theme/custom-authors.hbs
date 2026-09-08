@@ -1,0 +1,20 @@
+{{!< default}}
+
+<section class="feed-section">
+    <p class="section-label">Authors</p>
+    <div style="display:flex;flex-direction:column">
+        {{#get "authors" limit="all" include="count.posts"}}
+            {{#foreach authors}}
+            <a href="{{url}}" class="post-row" style="gap:0.75rem">
+                {{#if profile_image}}
+                <img src="{{profile_image}}" alt="{{name}}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0">
+                {{else}}
+                <div style="width:28px;height:28px;border-radius:50%;background:var(--app-accent);display:flex;align-items:center;justify-content:center;color:var(--app-accent-foreground);font-weight:600;font-size:0.6875rem;flex-shrink:0">{{name.[0]}}</div>
+                {{/if}}
+                <span class="post-row-title">{{name}}</span>
+                <span class="post-row-reading">{{count.posts}} {{plural count.posts empty="posts" singular="post" plural="posts"}}</span>
+            </a>
+            {{/foreach}}
+        {{/get}}
+    </div>
+</section>

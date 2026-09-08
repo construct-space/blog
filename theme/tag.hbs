@@ -1,0 +1,23 @@
+{{!< default}}
+
+<section class="feed-section">
+    <p class="section-label">Topic</p>
+    <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:0.25rem">{{name}}</h1>
+    {{#if description}}
+    <p style="color:var(--app-muted);font-size:0.875rem;margin-bottom:1.5rem">{{description}}</p>
+    {{else}}
+    <div style="margin-bottom:1.5rem"></div>
+    {{/if}}
+
+    <div class="post-list">
+        {{#foreach posts}}
+        <a href="{{url}}" class="post-row">
+            <time class="post-row-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D"}}</time>
+            <span class="post-row-title">{{title}}</span>
+            <span class="post-row-reading">{{reading_time}}</span>
+        </a>
+        {{/foreach}}
+    </div>
+</section>
+
+{{pagination}}

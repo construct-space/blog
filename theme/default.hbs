@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    {{ghost_head}}
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+    <style>
+      .gh-powered-by,
+      [data-testid="portal-trigger-button"],
+      .gh-portal-triggerbtn-container {
+        display: none !important;
+      }
+    </style>
+    <script>
+      // Swap CDN Portal with our dark-themed local version
+      document.addEventListener('DOMContentLoaded', function() {
+        var cdn = document.querySelector('script[src*="ghost/portal@"]');
+        if (cdn) {
+          var s = document.createElement('script');
+          s.src = '{{asset "portal/portal.min.js"}}';
+          s.defer = true;
+          ['data-i18n','data-ghost','data-key','data-api','data-locale'].forEach(function(a) {
+            if (cdn.hasAttribute(a)) s.setAttribute(a, cdn.getAttribute(a));
+          });
+          cdn.remove();
+          document.head.appendChild(s);
+        }
+      });
+    </script>
+</head>
+<body class="{{body_class}}">
+    <div class="site-wrapper">
+        {{> header}}
+        <div class="site-main">
+            <main class="main-content">
+                {{{body}}}
+            </main>
+        </div>
+    </div>
+    <script src="{{asset "js/theme.js"}}"></script>
+    {{ghost_foot}}
+</body>
+</html>

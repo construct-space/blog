@@ -1,0 +1,35 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-full">
+    <header class="post-full-header">
+        {{#if primary_tag}}
+        <div class="post-full-tag">{{primary_tag.name}}</div>
+        {{/if}}
+        <h1 class="post-full-title">{{title}}</h1>
+        <div class="post-full-meta">
+            {{#if primary_author.profile_image}}
+            <img src="{{primary_author.profile_image}}" alt="{{primary_author.name}}">
+            {{/if}}
+            <span>{{primary_author.name}}</span>
+            <span>&middot;</span>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+            <span>&middot;</span>
+            <span>{{reading_time}}</span>
+        </div>
+    </header>
+
+    {{#if feature_image}}
+    <img class="post-full-image" src="{{feature_image}}" alt="{{title}}">
+    {{/if}}
+
+    <section class="post-content">
+        {{content}}
+    </section>
+
+    {{!-- Comments section --}}
+    <section class="post-comments">
+        {{comments title="Discussion" count=true mode="auto"}}
+    </section>
+</article>
+{{/post}}
